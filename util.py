@@ -1,6 +1,7 @@
 from __future__ import division
 
-import sys, time, os, urllib.request
+import sys, time, os
+from six.moves import urllib
 import numpy as np
 import tensorflow as tf
 from tensorflow.models.rnn.ptb import reader
@@ -11,7 +12,9 @@ def load_tinyshakespeare():
     file_url = 'https://raw.githubusercontent.com/jcjohnson/torch-rnn/master/data/tiny-shakespeare.txt'
     file = dir + '/data/tinyshakespeare.txt'
     if not os.path.exists(file):
-        urllib.request.urlretrieve(file_url, file)
+        results = urllib.request.urlopen(file_url)
+        with open(file, 'w') as f:
+            f.write(str(results.read()))
 
     with open(file,'r') as f:
         raw_data = f.read()
@@ -103,6 +106,9 @@ def train_network(data, graph, num_epochs, num_steps = 200, batch_size = 32, ver
 
                 sw.add_summary(summary, global_step)
                 global_step += 1
+
+            if verbose:
+                print("  BATCH %d/%d, loss: %f" % (data_length // batch_size // num_steps, data_length // batch_size // num_steps, training_loss))
 
         if save == True:
             saver.save(sess, result_folder + '/' + graph['name'] + '_weights')

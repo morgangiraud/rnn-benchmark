@@ -29,10 +29,10 @@ See this [insightfull blog post](http://r2rt.com/written-memories-understanding-
 ### TensorFlow Full LSTM
 *TODO: Describe model*
 
-### readfist-LSTM
+### Readfist-LSTM
 *TODO: Describe model*
 
-### readfist-LSTM + matrix memory cell
+### Readfist-LSTM + matrix memory cell
 *TODO: Describe model*
 
 
