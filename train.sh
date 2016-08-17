@@ -27,8 +27,8 @@ python char_rnn.py --name readfirstlstm --num_epoch 20
 python char_rnn.py --name readfirstlstm --num_epoch 20 --num_layers 4
 
 # Read first LSTM + matrix memory cell
-# python char_rnn.py --name readfirstmmclstm --num_epoch 20
-# python char_rnn.py --name readfirstmmclstm --num_epoch 20 --num_layers 4
+python char_rnn.py --name readfirstmmclstm --num_epoch 20
+python char_rnn.py --name readfirstmmclstm --num_epoch 20 --num_layers 4
 
 
 ##########################

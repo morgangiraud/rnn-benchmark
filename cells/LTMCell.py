@@ -26,7 +26,7 @@ class LTMCell(tf.nn.rnn_cell.RNNCell):
                 
             new_state = f * state + w * state_hat
 
-            # Soft bound
+            # Soft bound à la batch norm
             m, v = tf.nn.moments(new_state, [0])
             new_state /= tf.sqrt(1 + v)
         return new_state, new_state # RNNOut, new_state

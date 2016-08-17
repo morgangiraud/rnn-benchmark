@@ -6,6 +6,7 @@ from util import load_tinyshakespeare, gen_epochs, reset_graph, train_network
 from cells.LTMCell import LTMCell
 from cells.PseudoLSTMCell import PseudoLSTMCell
 from cells.ReadfirstLSTMCell import ReadfirstLSTMCell
+from cells.ReadfirstMMCLSTMCell import ReadfirstMMCLSTMCell
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -47,9 +48,9 @@ def build_rnn(config):
         elif name == 'readfirstlstm':
             state_is_tuple=True
             cell = ReadfirstLSTMCell(state_size)
-        # elif name == 'readfirstmmclstm':
-        #     state_is_tuple=True
-        #     cell = ReadfirstMMCLSTMCell(state_size)
+        elif name == 'readfirstmmclstm':
+            state_is_tuple=True
+            cell = ReadfirstMMCLSTMCell(state_size)
         else:
             raise ValueError("Cell %s not handled" % (name))
 
