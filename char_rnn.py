@@ -4,6 +4,8 @@ import tensorflow as tf
 
 from util import load_tinyshakespeare, gen_epochs, reset_graph, train_network
 from cells.LTMCell import LTMCell
+from cells.PseudoLSTMCell import PseudoLSTMCell
+from cells.ReadfirstLSTMCell import ReadfirstLSTMCell
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -34,9 +36,20 @@ def build_rnn(config):
             cell = tf.nn.rnn_cell.GRUCell(state_size)
         elif name == 'ltm':
             cell = LTMCell(state_size, activation=tf.nn.tanh)
+        elif name == 'pseudolstm':
+            cell = PseudoLSTMCell(state_size, activation=tf.nn.tanh)
         elif name == 'lstm':
             state_is_tuple=True
             cell = tf.nn.rnn_cell.LSTMCell(state_size, state_is_tuple=state_is_tuple)
+        elif name == 'peepholelstm':
+            state_is_tuple=True
+            cell = tf.nn.rnn_cell.LSTMCell(state_size, use_peepholes=True, state_is_tuple=state_is_tuple)
+        elif name == 'readfirstlstm':
+            state_is_tuple=True
+            cell = ReadfirstLSTMCell(state_size)
+        # elif name == 'readfirstmmclstm':
+        #     state_is_tuple=True
+        #     cell = ReadfirstMMCLSTMCell(state_size)
         else:
             raise ValueError("Cell %s not handled" % (name))
 

@@ -29,6 +29,9 @@ See this [insightfull blog post](http://r2rt.com/written-memories-understanding-
 ### TensorFlow Full LSTM
 *TODO: Describe model*
 
+### TensorFlow Full LSTM + peephole
+*TODO: Describe model*
+
 ### Readfist-LSTM
 *TODO: Describe model*
 
